@@ -25,9 +25,9 @@
         <Menu HorizontalAlignment="Stretch" Grid.ColumnSpan="3" VerticalAlignment="Top" Name="topmenu">
             <MenuItem Header="_Open" Click="MenuItem_Click"/>
             <MenuItem Header="_Help">
-                <MenuItem Header="Github"/>
+                <MenuItem Header="Github" Click="MenuItem_Click_1"/>
                 <Separator/>
-                <MenuItem Header="About"/>
+                <MenuItem Header="About" Click="MenuItem_Click_2"/>
             </MenuItem>
         </Menu>
         <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="searchInput" KeyUp="searchInput_KeyUp"/>

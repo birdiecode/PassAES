@@ -350,5 +350,25 @@ namespace aesPass
 
             }
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            var destinationurl = "https://github.com/birdiecode/aesPass";
+            var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
+            {
+                UseShellExecute = true,
+            };
+            System.Diagnostics.Process.Start(sInfo);
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            var destinationurl = "https://github.com/birdiecode/aesPass/blob/master/README.md";
+            var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
+            {
+                UseShellExecute = true,
+            };
+            System.Diagnostics.Process.Start(sInfo);
+        }
     }
 }
