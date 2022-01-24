@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Dialogs;
+﻿using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,11 @@ namespace aesPass
         private MenuItem menuItem1;
         private MenuItem menuItem2;
         private MenuItem menuItem3;
+        private MenuItem menuItemAddSave;
+        private MenuItem menuItemAddClose;
+
+
+
 
         public MainWindow()
         {
@@ -47,16 +53,6 @@ namespace aesPass
             sort.IsReadOnly = true;
             this.Loaded += MainWindow_Loaded;
 
-        }
-
-        private void Ll_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
-        {
-
-            System.Timers.Timer ll = new(1);
-            ll.Elapsed += Ll_Elapsed;
-            ll.AutoReset = true;
-            ll.Enabled = true;
-            sort.Text = e.SignalTime.ToString();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -89,6 +85,39 @@ namespace aesPass
                 subItem.Expanded += this.Folder_Expanded;
                 DirView.Items.Add(subItem);
             }));
+            menuItemAddSave = new MenuItem();
+            menuItemAddSave.Header = "Save";
+            menuItemAddSave.Click += new RoutedEventHandler(this.MenuItem_Add_Save);
+        }
+
+        private void MenuItem_Add_Save(object sender, RoutedEventArgs e)
+        {
+            if (am == null)
+            {
+                PasswordWindow pw = new();
+                if ((bool)pw.ShowDialog())
+                {
+                    am = new(pw.Password);
+                }
+                else { return; }
+            }
+
+            SaveFileDialog dialog = new SaveFileDialog()
+            {
+                Filter = "Text Files(*.aes)|*.aes|All(*.*)|*"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                File.WriteAllText(dialog.FileName, am.EncryptBase64(addrecordinput.Text));
+                topmenu.Items.Remove(menuItemAddSave);
+                topmenu.Items.Add(menuItem3);
+                sort.Visibility = Visibility.Visible;
+                listv.Visibility = Visibility.Visible;
+                searchInput.Visibility = Visibility.Visible;
+                addrecordinput.Visibility = Visibility.Collapsed;
+
+            }
         }
 
         private void Folder_Expanded(object sender, RoutedEventArgs e)
@@ -246,6 +275,7 @@ namespace aesPass
             searchInput.Visibility = Visibility.Collapsed;
             addrecordinput.Visibility = Visibility.Visible;
             addrecordinput.Focus();
+            topmenu.Items.Add(menuItemAddSave);
 
         }
 
