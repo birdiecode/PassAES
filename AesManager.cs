@@ -121,24 +121,22 @@ namespace aesPass
                 aesAlg.IV = ivS;
 
                 ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-                using (MemoryStream msDecrypt = new MemoryStream(data))
+                try
                 {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    using (MemoryStream msDecrypt = new MemoryStream(data))
                     {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
                         {
-                            try
+                            using (StreamReader srDecrypt = new StreamReader(csDecrypt))
                             {
                                 return srDecrypt.ReadToEnd();
                             }
-                            catch (Exception)
-                            {
-
-                                return "error password";
-                            }
-                            
                         }
                     }
+                }
+                catch (Exception)
+                {
+                    return "error password";
                 }
             }
         }

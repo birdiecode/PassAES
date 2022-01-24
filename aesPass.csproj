@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFramework>net47</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>password_black_24dp.ico</ApplicationIcon>
   </PropertyGroup>

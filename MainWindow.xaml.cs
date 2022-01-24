@@ -4,18 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace aesPass
 {
@@ -36,7 +28,7 @@ namespace aesPass
         public MainWindow()
         {
             InitializeComponent();
-            cm = new("aesPass.ini");
+            cm = new ConfigManager("aesPass.ini");
             pps = cm.GetPrivateString("main", "path");
             if (pps == "")
             {
@@ -108,10 +100,10 @@ namespace aesPass
         {
             if (am == null)
             {
-                PasswordWindow pw = new();
+                PasswordWindow pw = new PasswordWindow();
                 if ((bool)pw.ShowDialog())
                 {
-                    am = new(pw.Password);
+                    am = new AesManager(pw.Password);
                 }
                 else { return; }
             }
@@ -203,10 +195,10 @@ namespace aesPass
             ListViewItem lvi = (ListViewItem)sender;
             stBar.Text = (string)lvi.Content;
 
-            PasswordWindow pw = new();
+            PasswordWindow pw = new PasswordWindow();
             if ((bool)pw.ShowDialog())
             {
-                am = new(pw.Password);
+                am = new AesManager(pw.Password);
             } else { return; }
 
             sort.Text = am.DecryptBase64(System.IO.File.ReadAllText((string)lvi.Content));
@@ -337,10 +329,10 @@ namespace aesPass
             if (e.Key == Key.Return)
             {
                 listv.Items.Clear();
-                PasswordWindow pw = new();
+                PasswordWindow pw = new PasswordWindow();
                 if ((bool)pw.ShowDialog())
                 {
-                    am = new(pw.Password);
+                    am = new AesManager(pw.Password);
                 }
                 else { return; }
                 grep(searchFile(pps, ""), searchInput.Text).ForEach((Action<string>)(path =>
