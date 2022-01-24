@@ -88,6 +88,20 @@ namespace aesPass
             menuItemAddSave = new MenuItem();
             menuItemAddSave.Header = "Save";
             menuItemAddSave.Click += new RoutedEventHandler(this.MenuItem_Add_Save);
+            menuItemAddClose = new MenuItem();
+            menuItemAddClose.Header = "Close";
+            menuItemAddClose.Click += new RoutedEventHandler(this.MenuItem_Add_Close);
+        }
+
+        private void MenuItem_Add_Close(object sender, RoutedEventArgs e)
+        {
+            topmenu.Items.Remove(menuItemAddSave);
+            topmenu.Items.Remove(menuItemAddClose);
+            topmenu.Items.Add(menuItem3);
+            sort.Visibility = Visibility.Visible;
+            listv.Visibility = Visibility.Visible;
+            searchInput.Visibility = Visibility.Visible;
+            addrecordinput.Visibility = Visibility.Collapsed;
         }
 
         private void MenuItem_Add_Save(object sender, RoutedEventArgs e)
@@ -111,6 +125,7 @@ namespace aesPass
             {
                 File.WriteAllText(dialog.FileName, am.EncryptBase64(addrecordinput.Text));
                 topmenu.Items.Remove(menuItemAddSave);
+                topmenu.Items.Remove(menuItemAddClose);
                 topmenu.Items.Add(menuItem3);
                 sort.Visibility = Visibility.Visible;
                 listv.Visibility = Visibility.Visible;
@@ -194,10 +209,6 @@ namespace aesPass
                 am = new(pw.Password);
             } else { return; }
 
-            MessageBox.Show("\""+ pw.Password+"\"");
-            MessageBox.Show(BitConverter.ToString(am.KEY));
-            MessageBox.Show(BitConverter.ToString(am.IV));
-
             sort.Text = am.DecryptBase64(System.IO.File.ReadAllText((string)lvi.Content));
             topmenu.Items.Remove(menuItem1);
             topmenu.Items.Remove(menuItem2);
@@ -276,6 +287,7 @@ namespace aesPass
             addrecordinput.Visibility = Visibility.Visible;
             addrecordinput.Focus();
             topmenu.Items.Add(menuItemAddSave);
+            topmenu.Items.Add(menuItemAddClose);
 
         }
 
