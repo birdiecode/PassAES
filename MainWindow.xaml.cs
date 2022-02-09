@@ -16,14 +16,12 @@ namespace aesPass
         private ConfigManager cm;
         private string pps;
         private AesManager am;
-        private MenuItem menuItem1;
-        private MenuItem menuItem2;
-        private MenuItem menuItem3;
+        private MenuItem menuItemEdit;
+        private MenuItem menuItemEditSave;
+        private MenuItem menuItemEditClose;
+        private MenuItem menuItemAdd;
         private MenuItem menuItemAddSave;
         private MenuItem menuItemAddClose;
-
-
-
 
         public MainWindow()
         {
@@ -45,18 +43,35 @@ namespace aesPass
             sort.IsReadOnly = true;
             this.Loaded += MainWindow_Loaded;
 
+            menuItemEdit = new MenuItem();
+            menuItemEdit.Header = "Edit";
+            menuItemEdit.Click += new RoutedEventHandler(this.MenuItem_Edit);
+            menuItemEditSave = new MenuItem();
+            menuItemEditSave.Header = "Save";
+            menuItemEditSave.Click += new RoutedEventHandler(this.MenuItem_Save);
+            menuItemEditClose = new MenuItem();
+            menuItemEditClose.Header = "Close";
+            menuItemEditClose.Click += new RoutedEventHandler(this.MenuItem_Close);
+
+            menuItemAdd = new MenuItem();
+            menuItemAdd.Header = "Add";
+            menuItemAdd.Click += new RoutedEventHandler(this.MenuItem_Add);
+            menuItemAddSave = new MenuItem();
+            menuItemAddSave.Header = "Save";
+            menuItemAddSave.Click += new RoutedEventHandler(this.MenuItem_Add_Save);
+            menuItemAddClose = new MenuItem();
+            menuItemAddClose.Header = "Close";
+            menuItemAddClose.Click += new RoutedEventHandler(this.MenuItem_Add_Close);
+
+            timerTick(null, null);
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            menuItem3 = new MenuItem();
-            menuItem3.Header = "Add";
-            menuItem3.Click += new RoutedEventHandler(this.MenuItem_Add);
-            topmenu.Items.Add(menuItem3);
+            topmenu.Items.Add(menuItemAdd);
             DirView.Items.Clear();
 
             var directories = new List<String>();
-
             try
             {
                 var dirs = Directory.GetDirectories(pps);
@@ -70,26 +85,63 @@ namespace aesPass
             {
                 var subItem = new TreeViewItem()
                 {
-                    Header = directoryPath,
+                    Header = directoryPath.Split('\\').Last(),
                     Tag = directoryPath
                 };
                 subItem.Items.Add(null);
                 subItem.Expanded += this.Folder_Expanded;
                 DirView.Items.Add(subItem);
             }));
-            menuItemAddSave = new MenuItem();
-            menuItemAddSave.Header = "Save";
-            menuItemAddSave.Click += new RoutedEventHandler(this.MenuItem_Add_Save);
-            menuItemAddClose = new MenuItem();
-            menuItemAddClose.Header = "Close";
-            menuItemAddClose.Click += new RoutedEventHandler(this.MenuItem_Add_Close);
+
+            System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Tick += new EventHandler(timerTick);
+            timer.Interval = new TimeSpan(0, 0, 900);
+            timer.Start();
+        }
+
+        private void timerTick(object sender, EventArgs e)
+        {
+            am = null;
+            PasswordWindow pw = new PasswordWindow();
+            if ((bool)pw.ShowDialog())
+            {
+                am = new AesManager(pw.Password);
+            }
+            else { Close(); }
+
+        }
+
+        private void MenuItem_Open(object sender, RoutedEventArgs e)
+        {
+            var dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            CommonFileDialogResult result = dialog.ShowDialog();
+            if (result == CommonFileDialogResult.Ok)
+            {
+                pps = dialog.FileName;
+                cm.WritePrivateString("main", "path", dialog.FileName);
+                MainWindow_Loaded(null, null);
+            }
+        }
+        
+        private void MenuItem_Add(object sender, RoutedEventArgs e)
+        {
+            topmenu.Items.Remove(menuItemAdd);
+            sort.Visibility = Visibility.Collapsed;
+            listv.Visibility = Visibility.Collapsed;
+            searchInput.Visibility = Visibility.Collapsed;
+            addrecordinput.Visibility = Visibility.Visible;
+            addrecordinput.Focus();
+            topmenu.Items.Add(menuItemAddSave);
+            topmenu.Items.Add(menuItemAddClose);
+
         }
 
         private void MenuItem_Add_Close(object sender, RoutedEventArgs e)
         {
             topmenu.Items.Remove(menuItemAddSave);
             topmenu.Items.Remove(menuItemAddClose);
-            topmenu.Items.Add(menuItem3);
+            topmenu.Items.Add(menuItemAdd);
             sort.Visibility = Visibility.Visible;
             listv.Visibility = Visibility.Visible;
             searchInput.Visibility = Visibility.Visible;
@@ -118,13 +170,55 @@ namespace aesPass
                 File.WriteAllText(dialog.FileName, am.EncryptBase64(addrecordinput.Text));
                 topmenu.Items.Remove(menuItemAddSave);
                 topmenu.Items.Remove(menuItemAddClose);
-                topmenu.Items.Add(menuItem3);
+                topmenu.Items.Add(menuItemAdd);
                 sort.Visibility = Visibility.Visible;
                 listv.Visibility = Visibility.Visible;
                 searchInput.Visibility = Visibility.Visible;
                 addrecordinput.Visibility = Visibility.Collapsed;
 
             }
+        }
+
+        private void MenuItem_Edit(object sender, RoutedEventArgs e)
+        {
+            topmenu.Items.Remove(menuItemEdit);
+            topmenu.Items.Remove(menuItemEditClose);
+            sort.IsReadOnly = false;
+            sort.Focus();
+            menuItemEdit = new MenuItem();
+            menuItemEdit.Header = "Save";
+            menuItemEdit.Click += new RoutedEventHandler(this.MenuItem_Save);
+            topmenu.Items.Add(menuItemEdit);
+            topmenu.Items.Add(menuItemEditClose);
+        }
+
+        private void MenuItem_Save(object sender, RoutedEventArgs e)
+        {
+            topmenu.Items.Remove(menuItemEdit);
+            topmenu.Items.Remove(menuItemEditClose);
+            sort.IsReadOnly = true;
+
+            File.WriteAllText(stBar.Text, am.EncryptBase64(sort.Text));
+
+            menuItemEdit = new MenuItem();
+            menuItemEdit.Header = "Edit";
+            menuItemEdit.Click += new RoutedEventHandler(this.MenuItem_Edit);
+            topmenu.Items.Add(menuItemEdit);
+            menuItemEditClose = new MenuItem();
+            menuItemEditClose.Header = "Close";
+            menuItemEditClose.Click += new RoutedEventHandler(this.MenuItem_Close);
+            topmenu.Items.Add(menuItemEditClose);
+
+        }
+
+        private void MenuItem_Close(object sender, RoutedEventArgs e)
+        {
+            topmenu.Items.Remove(menuItemEdit);
+            topmenu.Items.Remove(menuItemEditClose);
+            sort.Text = "";
+            sort.IsReadOnly = true;
+            topmenu.Items.Add(menuItemAdd);
+
         }
 
         private void Folder_Expanded(object sender, RoutedEventArgs e)
@@ -147,22 +241,13 @@ namespace aesPass
             catch { }
             directories.ForEach((Action<string>)(directoryPath =>
             {
-                // Create directory item
                 var subItem = new TreeViewItem()
                 {
-                    // Set header as folder name
-                    Header = directoryPath,
-                    // Add tag as full path
+                    Header = directoryPath.Split('\\').Last(),
                     Tag = directoryPath
                 };
-
-                // Add dummy item so we can expand folder
                 subItem.Items.Add(null);
-
-                // Handle expanding
                 subItem.Expanded += this.Folder_Expanded;
-
-                // Add this item to the parent
                 item.Items.Add(subItem);
             }));
         }
@@ -187,7 +272,7 @@ namespace aesPass
             {
                 listv.Items.Add(filePath);
             }));
-            
+
         }
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -195,92 +280,22 @@ namespace aesPass
             ListViewItem lvi = (ListViewItem)sender;
             stBar.Text = (string)lvi.Content;
 
-            PasswordWindow pw = new PasswordWindow();
-            if ((bool)pw.ShowDialog())
+            if (am == null)
             {
-                am = new AesManager(pw.Password);
-            } else { return; }
+                PasswordWindow pw = new PasswordWindow();
+                if ((bool)pw.ShowDialog())
+                {
+                    am = new AesManager(pw.Password);
+                }
+                else { return; }
+            }
 
             sort.Text = am.DecryptBase64(System.IO.File.ReadAllText((string)lvi.Content));
-            topmenu.Items.Remove(menuItem1);
-            topmenu.Items.Remove(menuItem2);
-            topmenu.Items.Remove(menuItem3);
-            menuItem1 = new MenuItem();
-            menuItem1.Header = "Edit";
-            menuItem1.Click += new RoutedEventHandler(this.MenuItem_Edit);
-            topmenu.Items.Add(menuItem1);
-            menuItem2 = new MenuItem();
-            menuItem2.Header = "Close";
-            menuItem2.Click += new RoutedEventHandler(this.MenuItem_Close);
-            topmenu.Items.Add(menuItem2);
-        }
-
-        private void MenuItem_Edit(object sender, RoutedEventArgs e)
-        {
-            topmenu.Items.Remove(menuItem1);
-            topmenu.Items.Remove(menuItem2);
-            sort.IsReadOnly = false;
-            sort.Focus();
-            menuItem1 = new MenuItem();
-            menuItem1.Header = "Save";
-            menuItem1.Click += new RoutedEventHandler(this.MenuItem_Save);
-            topmenu.Items.Add(menuItem1);
-            topmenu.Items.Add(menuItem2);
-        }
-
-        private void MenuItem_Save(object sender, RoutedEventArgs e)
-        {
-            topmenu.Items.Remove(menuItem1);
-            topmenu.Items.Remove(menuItem2);
-            sort.IsReadOnly = true;
-
-            File.WriteAllText(stBar.Text, am.EncryptBase64(sort.Text));
-
-            menuItem1 = new MenuItem();
-            menuItem1.Header = "Edit";
-            menuItem1.Click += new RoutedEventHandler(this.MenuItem_Edit);
-            topmenu.Items.Add(menuItem1);
-            menuItem2 = new MenuItem();
-            menuItem2.Header = "Close";
-            menuItem2.Click += new RoutedEventHandler(this.MenuItem_Close);
-            topmenu.Items.Add(menuItem2);
-
-        }
-
-        private void MenuItem_Close(object sender, RoutedEventArgs e)
-        {
-            topmenu.Items.Remove(menuItem1);
-            topmenu.Items.Remove(menuItem2);
-            sort.Text = "";
-            sort.IsReadOnly = true;
-            topmenu.Items.Add(menuItem3);
-
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new CommonOpenFileDialog();
-            dialog.IsFolderPicker = true;
-            CommonFileDialogResult result = dialog.ShowDialog();
-            if (result == CommonFileDialogResult.Ok)
-            {
-                pps = dialog.FileName;
-                cm.WritePrivateString("main", "path", dialog.FileName);
-                MainWindow_Loaded(null, null);
-            }
-        }
-
-        private void MenuItem_Add(object sender, RoutedEventArgs e)
-        {
-            topmenu.Items.Remove(menuItem3);
-            sort.Visibility = Visibility.Collapsed;
-            listv.Visibility = Visibility.Collapsed;
-            searchInput.Visibility = Visibility.Collapsed;
-            addrecordinput.Visibility = Visibility.Visible;
-            addrecordinput.Focus();
-            topmenu.Items.Add(menuItemAddSave);
-            topmenu.Items.Add(menuItemAddClose);
-
+            topmenu.Items.Remove(menuItemEdit);
+            topmenu.Items.Remove(menuItemEditClose);
+            topmenu.Items.Remove(menuItemAdd);
+            topmenu.Items.Add(menuItemEdit);
+            topmenu.Items.Add(menuItemEditClose);
         }
 
         private List<String> searchFile(String path, String filter)
@@ -329,17 +344,19 @@ namespace aesPass
             if (e.Key == Key.Return)
             {
                 listv.Items.Clear();
-                PasswordWindow pw = new PasswordWindow();
-                if ((bool)pw.ShowDialog())
+                if (am == null)
                 {
-                    am = new AesManager(pw.Password);
+                    PasswordWindow pw = new PasswordWindow();
+                    if ((bool)pw.ShowDialog())
+                    {
+                        am = new AesManager(pw.Password);
+                    }
+                    else { return; }
                 }
-                else { return; }
                 grep(searchFile(pps, ""), searchInput.Text).ForEach((Action<string>)(path =>
                 {
                     listv.Items.Add(path);
                 }));
-
             }
         }
 

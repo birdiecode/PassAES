@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <Menu HorizontalAlignment="Stretch" Grid.ColumnSpan="3" VerticalAlignment="Top" Name="topmenu">
-            <MenuItem Header="_Open" Click="MenuItem_Click"/>
+            <MenuItem Header="_Open" Click="MenuItem_Open"/>
             <MenuItem Header="_Help">
                 <MenuItem Header="Github" Click="MenuItem_Click_1"/>
                 <Separator/>
