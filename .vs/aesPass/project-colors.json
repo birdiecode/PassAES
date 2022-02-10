@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "fc3874ec-1193-4e91-94a1-74635d25bf40": {
+      "ProjectGuid": "fc3874ec-1193-4e91-94a1-74635d25bf40",
+      "DisplayName": "aesPass",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    },
+    "cce7b866-f261-404e-b48f-a7d9e9ac1dc6": {
+      "ProjectGuid": "cce7b866-f261-404e-b48f-a7d9e9ac1dc6",
+      "DisplayName": "PassAES",
+      "ColorIndex": 1
+    },
+    "3be51839-23c7-4fac-8530-da5b86e245a6": {
+      "ProjectGuid": "3be51839-23c7-4fac-8530-da5b86e245a6",
+      "DisplayName": "PassAES",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

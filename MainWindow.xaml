@@ -55,7 +55,7 @@
             </ListView.Resources>
         </ListView>
         <TextBox  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap" Name="sort" Text="TextBlock" AcceptsReturn="True" />
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4" Visibility="Collapsed" Name="addrecordinput"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4" Visibility="Collapsed" TextWrapping="Wrap" AcceptsReturn="True" Name="addrecordinput"/>
         <StatusBar Grid.Row="5" Grid.ColumnSpan="4" Height="25">
             <StatusBarItem>
                 <TextBlock Name="stBar" />

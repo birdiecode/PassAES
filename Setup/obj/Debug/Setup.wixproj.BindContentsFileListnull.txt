@@ -1,0 +1,3 @@
+C:\Users\Администратор\Documents\aesPass\bin\Debug\net47\aesPass.exe
+C:\Users\Администратор\Documents\aesPass\bin\Debug\net47\Microsoft.WindowsAPICodePack.dll
+C:\Users\Администратор\Documents\aesPass\bin\Debug\net47\Microsoft.WindowsAPICodePack.Shell.dll

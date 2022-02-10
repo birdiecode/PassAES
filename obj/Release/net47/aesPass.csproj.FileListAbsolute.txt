@@ -1,0 +1,45 @@
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass.csproj.AssemblyReference.cache
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass.csproj.SuggestedBindingRedirects.cache
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\MainWindow.g.cs
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\PasswordWindow.g.cs
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\App.g.cs
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass_Content.g.cs
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass_MarkupCompile.cache
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass_MarkupCompile.lref
+C:\Users\HP User 2\source\repos\aesPass\bin\Release\net47\aesPass.exe.config
+C:\Users\HP User 2\source\repos\aesPass\bin\Release\net47\aesPass.exe
+C:\Users\HP User 2\source\repos\aesPass\bin\Release\net47\aesPass.pdb
+C:\Users\HP User 2\source\repos\aesPass\bin\Release\net47\Microsoft.WindowsAPICodePack.dll
+C:\Users\HP User 2\source\repos\aesPass\bin\Release\net47\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\MainWindow.baml
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\PasswordWindow.baml
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass.g.resources
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass.AssemblyInfoInputs.cache
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass.AssemblyInfo.cs
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass.csproj.CoreCompileInputs.cache
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass.csproj.CopyComplete
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass.exe
+C:\Users\HP User 2\source\repos\aesPass\obj\Release\net47\aesPass.pdb
+C:\Users\Администратор\Documents\aesPass\bin\Release\net47\aesPass.exe.config
+C:\Users\Администратор\Documents\aesPass\bin\Release\net47\aesPass.exe
+C:\Users\Администратор\Documents\aesPass\bin\Release\net47\aesPass.pdb
+C:\Users\Администратор\Documents\aesPass\bin\Release\net47\Microsoft.WindowsAPICodePack.dll
+C:\Users\Администратор\Documents\aesPass\bin\Release\net47\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass.csproj.AssemblyReference.cache
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\MainWindow.g.cs
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\PasswordWindow.g.cs
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\App.g.cs
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass_Content.g.cs
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass_MarkupCompile.cache
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass_MarkupCompile.lref
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\MainWindow.baml
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\PasswordWindow.baml
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass.g.resources
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass.AssemblyInfoInputs.cache
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass.AssemblyInfo.cs
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass.csproj.CoreCompileInputs.cache
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass.csproj.CopyComplete
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass.exe
+C:\Users\Администратор\Documents\aesPass\obj\Release\net47\aesPass.pdb

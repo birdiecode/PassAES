@@ -185,28 +185,18 @@ namespace aesPass
             topmenu.Items.Remove(menuItemEditClose);
             sort.IsReadOnly = false;
             sort.Focus();
-            menuItemEdit = new MenuItem();
-            menuItemEdit.Header = "Save";
-            menuItemEdit.Click += new RoutedEventHandler(this.MenuItem_Save);
-            topmenu.Items.Add(menuItemEdit);
+            topmenu.Items.Add(menuItemEditSave);
             topmenu.Items.Add(menuItemEditClose);
         }
 
         private void MenuItem_Save(object sender, RoutedEventArgs e)
         {
-            topmenu.Items.Remove(menuItemEdit);
+            topmenu.Items.Remove(menuItemEditSave);
             topmenu.Items.Remove(menuItemEditClose);
             sort.IsReadOnly = true;
 
             File.WriteAllText(stBar.Text, am.EncryptBase64(sort.Text));
-
-            menuItemEdit = new MenuItem();
-            menuItemEdit.Header = "Edit";
-            menuItemEdit.Click += new RoutedEventHandler(this.MenuItem_Edit);
             topmenu.Items.Add(menuItemEdit);
-            menuItemEditClose = new MenuItem();
-            menuItemEditClose.Header = "Close";
-            menuItemEditClose.Click += new RoutedEventHandler(this.MenuItem_Close);
             topmenu.Items.Add(menuItemEditClose);
 
         }
@@ -292,8 +282,10 @@ namespace aesPass
 
             sort.Text = am.DecryptBase64(System.IO.File.ReadAllText((string)lvi.Content));
             topmenu.Items.Remove(menuItemEdit);
+            topmenu.Items.Remove(menuItemEditSave);
             topmenu.Items.Remove(menuItemEditClose);
             topmenu.Items.Remove(menuItemAdd);
+            sort.IsReadOnly = true;
             topmenu.Items.Add(menuItemEdit);
             topmenu.Items.Add(menuItemEditClose);
         }

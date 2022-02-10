@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "mV8Lj8vqNUBg0DvqHIRFc5NwuZr7BtxrmL/lGcEqOh5NzYbs93+hDqK7ZKQTRgDd5cVWUrUqfrTVaa65j3ubCw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Администратор\\Documents\\aesPass\\aesPass.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Администратор\\.nuget\\packages\\windowsapicodepack-core\\1.1.1\\windowsapicodepack-core.1.1.1.nupkg.sha512",
+    "C:\\Users\\Администратор\\.nuget\\packages\\windowsapicodepack-shell\\1.1.1\\windowsapicodepack-shell.1.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}
