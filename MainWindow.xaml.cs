@@ -354,7 +354,7 @@ namespace aesPass
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            var destinationurl = "https://github.com/birdiecode/aesPass";
+            var destinationurl = "https://github.com/birdiecode/PassAES";
             var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
             {
                 UseShellExecute = true,
@@ -364,7 +364,7 @@ namespace aesPass
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
-            var destinationurl = "https://github.com/birdiecode/aesPass/blob/master/README.md";
+            var destinationurl = "https://github.com/birdiecode/PassAES/blob/master/README.md";
             var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
             {
                 UseShellExecute = true,

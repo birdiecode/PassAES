@@ -88,9 +88,9 @@
   "project": {
     "version": "1.0.3",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Администратор\\Documents\\aesPass\\aesPass.csproj",
-      "projectName": "aesPass",
-      "projectPath": "C:\\Users\\Администратор\\Documents\\aesPass\\aesPass.csproj",
+      "projectUniqueName": "C:\\Users\\Администратор\\Documents\\aesPass\\PassAES.csproj",
+      "projectName": "PassAES",
+      "projectPath": "C:\\Users\\Администратор\\Documents\\aesPass\\PassAES.csproj",
       "packagesPath": "C:\\Users\\Администратор\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Администратор\\Documents\\aesPass\\obj\\",
       "projectStyle": "PackageReference",

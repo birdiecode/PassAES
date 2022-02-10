@@ -1,3 +1,3 @@
-﻿# aesPass
+﻿# PassAES
 
 password manager
