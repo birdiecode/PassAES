@@ -13,6 +13,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
@@ -31,10 +32,11 @@
             </MenuItem>
         </Menu>
         <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="searchInput" KeyUp="searchInput_KeyUp"/>
-        <TreeView Grid.Row="1" Grid.RowSpan="4" Name="DirView">
+        <TreeView Grid.Row="1" Grid.RowSpan="5" Name="DirView">
             <TreeView.Resources>
                 <Style TargetType="{x:Type TreeViewItem}">
                     <EventSetter Event="MouseLeftButtonUp" Handler="TreeViewItem_MouseLeftButtonUp"/>
+                    <EventSetter Event="KeyUp" Handler="TreeViewItem_KeyUp" />
                     <Setter Property="HeaderTemplate">
                         <Setter.Value>
                             <DataTemplate>
@@ -55,13 +57,23 @@
                 </Style>
             </ListView.Resources>
         </ListView>
-        <TextBox  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap" Name="sort" Text="TextBlock" AcceptsReturn="True" />
+
+        <TabControl  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Margin="3">Raw</TextBlock>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <TextBox TextWrapping="Wrap" Name="sort" Text="TextBlock" AcceptsReturn="True" />
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+
         <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4" Visibility="Collapsed" TextWrapping="Wrap" AcceptsReturn="True" Name="addrecordinput"/>
-        <StatusBar Grid.Row="5" Grid.ColumnSpan="4" Height="25">
+        <StatusBar Grid.Row="6" Grid.ColumnSpan="4" Height="25">
             <StatusBarItem>
                 <TextBlock Name="stBar" />
             </StatusBarItem>
         </StatusBar>
-        
     </Grid>
 </Window>

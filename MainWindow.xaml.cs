@@ -44,23 +44,23 @@ namespace aesPass
             this.Loaded += MainWindow_Loaded;
 
             menuItemEdit = new MenuItem();
-            menuItemEdit.Header = "Edit";
+            menuItemEdit.Header = "_Edit";
             menuItemEdit.Click += new RoutedEventHandler(this.MenuItem_Edit);
             menuItemEditSave = new MenuItem();
-            menuItemEditSave.Header = "Save";
+            menuItemEditSave.Header = "_Save";
             menuItemEditSave.Click += new RoutedEventHandler(this.MenuItem_Save);
             menuItemEditClose = new MenuItem();
-            menuItemEditClose.Header = "Close";
+            menuItemEditClose.Header = "C_lose";
             menuItemEditClose.Click += new RoutedEventHandler(this.MenuItem_Close);
 
             menuItemAdd = new MenuItem();
-            menuItemAdd.Header = "Add";
+            menuItemAdd.Header = "A_dd";
             menuItemAdd.Click += new RoutedEventHandler(this.MenuItem_Add);
             menuItemAddSave = new MenuItem();
-            menuItemAddSave.Header = "Save";
+            menuItemAddSave.Header = "_Save";
             menuItemAddSave.Click += new RoutedEventHandler(this.MenuItem_Add_Save);
             menuItemAddClose = new MenuItem();
-            menuItemAddClose.Header = "Close";
+            menuItemAddClose.Header = "C_lose";
             menuItemAddClose.Click += new RoutedEventHandler(this.MenuItem_Add_Close);
 
             timerTick(null, null);
@@ -265,6 +265,31 @@ namespace aesPass
 
         }
 
+        private void TreeViewItem_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                TreeViewItem tvi = (TreeViewItem)sender;
+                e.Handled = true;
+
+                stBar.Text = (string)tvi.Tag;
+                listv.Items.Clear();
+                var files = new List<String>();
+                try
+                {
+                    var fs = Directory.GetFiles((string)tvi.Tag);
+
+                    if (fs.Length > 0)
+                        files.AddRange(fs);
+                }
+                catch { }
+                files.ForEach((Action<string>)(filePath =>
+                {
+                    listv.Items.Add(filePath);
+                }));
+            }  
+        }
+
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ListViewItem lvi = (ListViewItem)sender;
@@ -289,6 +314,7 @@ namespace aesPass
             topmenu.Items.Add(menuItemEdit);
             topmenu.Items.Add(menuItemEditClose);
         }
+        
         private void ListViewItem_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -399,6 +425,6 @@ namespace aesPass
             System.Diagnostics.Process.Start(sInfo);
         }
 
-        
+
     }
 }
