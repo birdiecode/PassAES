@@ -61,7 +61,7 @@ namespace aesPass {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PassAES;V1.0.3.0;component/passwordwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PassAES;V1.1.0.0;component/passwordwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\PasswordWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

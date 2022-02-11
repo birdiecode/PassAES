@@ -13,6 +13,7 @@ namespace aesPass
 {
     public partial class MainWindow : Window
     {
+        public static RoutedCommand MyCommand = new RoutedCommand();
         private ConfigManager cm;
         private string pps;
         private AesManager am;
@@ -25,6 +26,7 @@ namespace aesPass
 
         public MainWindow()
         {
+            MyCommand.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
             InitializeComponent();
             cm = new ConfigManager("aesPass.ini");
             pps = cm.GetPrivateString("main", "path");
@@ -63,6 +65,7 @@ namespace aesPass
             menuItemAddClose.Header = "C_lose";
             menuItemAddClose.Click += new RoutedEventHandler(this.MenuItem_Add_Close);
 
+           
             timerTick(null, null);
         }
 
@@ -97,6 +100,7 @@ namespace aesPass
             timer.Tick += new EventHandler(timerTick);
             timer.Interval = new TimeSpan(0, 0, 900);
             timer.Start();
+
         }
 
         private void timerTick(object sender, EventArgs e)
@@ -425,6 +429,9 @@ namespace aesPass
             System.Diagnostics.Process.Start(sInfo);
         }
 
-
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            searchInput.Focus();
+        }
     }
 }

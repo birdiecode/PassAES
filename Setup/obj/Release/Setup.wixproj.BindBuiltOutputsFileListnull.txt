@@ -1,0 +1,2 @@
+C:\Users\Администратор\Documents\aesPass\Setup\bin\Release\Setup.msi
+C:\Users\Администратор\Documents\aesPass\Setup\bin\Release\Setup.wixpdb

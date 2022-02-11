@@ -1,0 +1,6 @@
+C:\Users\Администратор\Documents\aesPass\Setup\bin\Release\Setup.msi
+C:\Users\Администратор\Documents\aesPass\Setup\bin\Release\Setup.wixpdb
+obj\Release\Product.wixobj
+obj\Release\Setup.wixproj.BindContentsFileListnull.txt
+obj\Release\Setup.wixproj.BindOutputsFileListnull.txt
+obj\Release\Setup.wixproj.BindBuiltOutputsFileListnull.txt
