@@ -51,6 +51,7 @@
             <ListView.Resources>
                 <Style TargetType="{x:Type ListViewItem}">
                     <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick" />
+                    <EventSetter Event="KeyUp" Handler="ListViewItem_KeyUp" />
                 </Style>
             </ListView.Resources>
         </ListView>

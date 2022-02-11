@@ -289,6 +289,33 @@ namespace aesPass
             topmenu.Items.Add(menuItemEdit);
             topmenu.Items.Add(menuItemEditClose);
         }
+        private void ListViewItem_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                ListViewItem lvi = (ListViewItem)sender;
+                stBar.Text = (string)lvi.Content;
+
+                if (am == null)
+                {
+                    PasswordWindow pw = new PasswordWindow();
+                    if ((bool)pw.ShowDialog())
+                    {
+                        am = new AesManager(pw.Password);
+                    }
+                    else { return; }
+                }
+
+                sort.Text = am.DecryptBase64(System.IO.File.ReadAllText((string)lvi.Content));
+                topmenu.Items.Remove(menuItemEdit);
+                topmenu.Items.Remove(menuItemEditSave);
+                topmenu.Items.Remove(menuItemEditClose);
+                topmenu.Items.Remove(menuItemAdd);
+                sort.IsReadOnly = true;
+                topmenu.Items.Add(menuItemEdit);
+                topmenu.Items.Add(menuItemEditClose);
+            }
+        }
 
         private List<String> searchFile(String path, String filter)
         {
@@ -371,5 +398,7 @@ namespace aesPass
             };
             System.Diagnostics.Process.Start(sInfo);
         }
+
+        
     }
 }

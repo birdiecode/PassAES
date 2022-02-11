@@ -26,17 +26,17 @@
     <Content Include="Setup.wax" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\aesPass\aesPass.csproj">
-      <Name>aesPass</Name>
+    <Folder Include="Images" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\aesPass\PassAES.csproj">
+      <Name>PassAES</Name>
       <Project>{fc3874ec-1193-4e91-94a1-74635d25bf40}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
